@@ -1,4 +1,5 @@
 import {
+  crop,
   fetchURL,
   writeCanvas,
 } from "https://cdn.jsdelivr.net/npm/image-js@latest/+esm";
@@ -12,7 +13,17 @@ const writeFlippedImage = async (imageURL) => {
   const image = await fetchURL(imageURL);
   const canvas = document.getElementById("output");
   clearCanvas(canvas);
-  writeCanvas(image.flip(), canvas);
+
+  const flipPoint = 0.49; // between 0 and 1
+  const flipX = Math.round(image.width * flipPoint);
+  canvas.setAttribute("width", `${flipX * 2}`);
+  canvas.setAttribute("height", `${image.height}`);
+
+  const croppedImage = crop(image, { width: flipX });
+  writeCanvas(croppedImage, canvas, {
+    resizeCanvas: false,
+  });
+  writeCanvas(croppedImage.flip(), canvas, { dx: flipX, resizeCanvas: false });
 };
 
 window.shrershify = () => {
