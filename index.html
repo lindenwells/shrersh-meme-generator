@@ -3,21 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Shrersh</title>
-
-    <script>
-      const shrershify = () => {
-        const firstImage = document.getElementById("image-upload")?.files?.[0];
-
-        if (!firstImage) return;
-
-        const outputElement = document.getElementById("output");
-        const imageElement = document.createElement("img");
-        imageElement.src = URL.createObjectURL(firstImage);
-        imageElement.alt = imageElement.title = firstImage.name;
-
-        outputElement.appendChild(imageElement);
-      };
-    </script>
+    <script type="module" src="./script.js"></script>
   </head>
   <body>
     <div style="height: 100vh; width: 100vw; display: flex">
@@ -34,7 +20,7 @@
       </button>
       <div style="flex-grow: 1; display: flex; flex-direction: column">
         <label>Output</label>
-        <div id="output"></div>
+        <canvas id="output"></canvas>
       </div>
     </div>
   </body>

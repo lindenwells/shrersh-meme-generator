@@ -1,12 +1,24 @@
-const shrershify = () => {
-    const firstImage = document.getElementById("image-upload")?.files?.[0];
+import {
+  fetchURL,
+  writeCanvas,
+} from "https://cdn.jsdelivr.net/npm/image-js@latest/+esm";
 
-    if (!firstImage) return;
+const clearCanvas = (canvas) => {
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
 
-    const outputElement = document.getElementById("output");
-    const image = document.createElement("img");
-    image.src = URL.createObjectURL(file)
-    image.alt = image.title = file.name;
-    
-    outputElement.replaceChild(image)
-}
+const writeFlippedImage = async (imageURL) => {
+  const image = await fetchURL(imageURL);
+  const canvas = document.getElementById("output");
+  clearCanvas(canvas);
+  writeCanvas(image.flip(), canvas);
+};
+
+window.shrershify = () => {
+  const firstImage = document.getElementById("image-upload")?.files?.[0];
+
+  if (!firstImage) return;
+
+  writeFlippedImage(URL.createObjectURL(firstImage));
+};
