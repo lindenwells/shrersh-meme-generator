@@ -1,34 +1,41 @@
-<!DOCTYPE html>
-<html style="font-family: Arial, Helvetica, sans-serif;">
-<head>
+<!doctype html>
+<html style="font-family: Arial, Helvetica, sans-serif">
+  <head>
     <meta charset="UTF-8" />
     <title>Shrersh</title>
+
     <script>
-        const shrershify = () => {
-            const firstImage = document.getElementById("image-upload")?.files?.[0];
+      const shrershify = () => {
+        const firstImage = document.getElementById("image-upload")?.files?.[0];
 
-            if (!firstImage) return;
+        if (!firstImage) return;
 
-            const outputElement = document.getElementById("output");
-            const imageElement = document.createElement("img");
-            imageElement.src = URL.createObjectURL(firstImage)
-            imageElement.alt = imageElement.title = firstImage.name;
-            
-            outputElement.appendChild(imageElement)
-        }
+        const outputElement = document.getElementById("output");
+        const imageElement = document.createElement("img");
+        imageElement.src = URL.createObjectURL(firstImage);
+        imageElement.alt = imageElement.title = firstImage.name;
+
+        outputElement.appendChild(imageElement);
+      };
     </script>
-</head>
-<body>
-    <div style="height: 100vh; width:100vw; display: flex;">
-        <div style="flex-grow: 1; display: flex; flex-direction: column;">
-            <label for="image-upload">Upload image</label>
-            <input id="image-upload" type="file" accept="image/*"/>
-        </div>
-        <button id="shrershify" style="background-color: #b6b52a;" onclick="shrershify()">Shrershify</button>
-        <div style="flex-grow: 1; display: flex; flex-direction: column;">
-            <label>Output</label>
-            <div id="output"></div>
-        </div>
+  </head>
+  <body>
+    <div style="height: 100vh; width: 100vw; display: flex">
+      <div style="flex-grow: 1; display: flex; flex-direction: column">
+        <label for="image-upload">Upload image</label>
+        <input id="image-upload" type="file" accept="image/*" />
+      </div>
+      <button
+        id="shrershify"
+        style="background-color: #b6b52a"
+        onclick="shrershify()"
+      >
+        Shrershify
+      </button>
+      <div style="flex-grow: 1; display: flex; flex-direction: column">
+        <label>Output</label>
+        <div id="output"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
