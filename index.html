@@ -1,15 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html style="font-family: Arial, Helvetica, sans-serif">
   <head>
     <meta charset="UTF-8" />
     <title>Shrersh</title>
     <script type="module" src="./script.js"></script>
+    <script>
+      const updateImagePreview = () => {
+        const imageUpload = document.getElementById("image-upload");
+        const files = imageUpload.files;
+        if (files?.length) {
+          const preview = document.getElementById("uploaded-image-preview");
+          while (preview.firstChild) {
+            preview.removeChild(preview.firstChild);
+          }
+          const firstImage = files[0];
+          const img = document.createElement("img");
+          img.src = URL.createObjectURL(firstImage);
+          img.alt = img.title = img.name;
+
+          preview.appendChild(img);
+        }
+      };
+    </script>
   </head>
   <body>
     <div style="height: 100vh; width: 100vw; display: flex">
-      <div style="flex-grow: 1; display: flex; flex-direction: column">
+      <div
+        style="
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          max-width: 50vh;
+        "
+      >
         <label for="image-upload">Upload image</label>
-        <input id="image-upload" type="file" accept="image/*" />
+        <input
+          id="image-upload"
+          type="file"
+          accept="image/*"
+          onchange="updateImagePreview()"
+        />
+        <div id="uploaded-image-preview"></div>
       </div>
       <button
         id="shrershify"
