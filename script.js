@@ -9,12 +9,12 @@ const clearCanvas = (canvas) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
-const writeFlippedImage = async (imageURL) => {
+
+const writeFlippedImage = async (imageURL, flipPoint) => {
   const image = await fetchURL(imageURL);
   const canvas = document.getElementById("output");
   clearCanvas(canvas);
 
-  const flipPoint = 0.49; // between 0 and 1
   const flipX = Math.round(image.width * flipPoint);
   canvas.setAttribute("width", `${flipX * 2}`);
   canvas.setAttribute("height", `${image.height}`);
@@ -25,11 +25,13 @@ const writeFlippedImage = async (imageURL) => {
   });
   writeCanvas(croppedImage.flip(), canvas, { dx: flipX, resizeCanvas: false });
 };
+ 
+window.getFlipPoint = () => parseFloat(document.getElementById("flip-point").value)
 
-window.shrershify = () => {
-  const firstImage = document.getElementById("image-upload")?.files?.[0];
+window.getFirstImage = () => document.getElementById("image-upload")?.files?.[0];
 
+window.shrershify = (firstImage, flipPoint) => {
   if (!firstImage) return;
 
-  writeFlippedImage(URL.createObjectURL(firstImage));
+  writeFlippedImage(URL.createObjectURL(firstImage), flipPoint);
 };

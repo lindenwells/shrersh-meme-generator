@@ -5,18 +5,17 @@
     <title>Shrersh</title>
     <script type="module" src="./script.js"></script>
     <script>
-      const updateImagePreview = () => {
-        const imageUpload = document.getElementById("image-upload");
-        const files = imageUpload.files;
-        if (files?.length) {
+      const updateImagePreview = (firstImage) => {
+
+        if (firstImage) {
           const preview = document.getElementById("uploaded-image-preview");
           while (preview.firstChild) {
             preview.removeChild(preview.firstChild);
           }
-          const firstImage = files[0];
           const img = document.createElement("img");
           img.src = URL.createObjectURL(firstImage);
           img.alt = img.title = img.name;
+          img.style = "max-width: 30vw;"
 
           preview.appendChild(img);
         }
@@ -30,7 +29,7 @@
           flex-grow: 1;
           display: flex;
           flex-direction: column;
-          max-width: 50vh;
+          max-width: 30vw;
         "
       >
         <label for="image-upload">Upload image</label>
@@ -38,18 +37,19 @@
           id="image-upload"
           type="file"
           accept="image/*"
-          onchange="updateImagePreview()"
+          onchange="updateImagePreview(getFirstImage())"
         />
         <div id="uploaded-image-preview"></div>
+        <input type="range" min="0" max="1" step="0.01" value="0.5" style="width: 30vw;" id="flip-point"/>
       </div>
       <button
         id="shrershify"
-        style="background-color: #b6b52a"
-        onclick="shrershify()"
+        style="background-color: #b6b52a;"
+        onclick="shrershify(getFirstImage(), getFlipPoint())"
       >
         Shrershify
       </button>
-      <div style="flex-grow: 1; display: flex; flex-direction: column">
+      <div style="display: flex; flex-direction: column">
         <label>Output</label>
         <canvas id="output"></canvas>
       </div>
