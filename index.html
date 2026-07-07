@@ -20,6 +20,10 @@
           preview.appendChild(img);
         }
       };
+
+      window.addEventListener("load", () => {
+        updateImagePreview(window.getFirstImage());
+      });
     </script>
   </head>
   <body>
