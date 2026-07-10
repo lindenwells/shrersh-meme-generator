@@ -18,6 +18,7 @@ const writeFlippedImage = async (imageURL, flipPoint) => {
   const flipX = Math.round(image.width * flipPoint);
   canvas.setAttribute("width", `${flipX * 2}`);
   canvas.setAttribute("height", `${image.height}`);
+  canvas.setAttribute("style", "width: 60vw;");
 
   const croppedImage = crop(image, { width: flipX });
   writeCanvas(croppedImage, canvas, {
