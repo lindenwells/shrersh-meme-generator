@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html style="font-family: Arial, Helvetica, sans-serif">
   <head>
     <meta charset="UTF-8" />
     <title>Shrersh</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="module" src="./script.js"></script>
     <script>
       const updateImagePreview = (firstImage) => {
-
         if (firstImage) {
           const preview = document.getElementById("uploaded-image-preview");
           while (preview.firstChild) {
@@ -15,9 +15,22 @@
           const img = document.createElement("img");
           img.src = URL.createObjectURL(firstImage);
           img.alt = img.title = img.name;
-          img.style = "max-width: 30vw;"
+          img.style = "max-width: 30vw;";
 
           preview.appendChild(img);
+
+          const flipPoint = (Math.random() * 100) / 2;
+          const output = document.getElementById("output");
+          while (output.firstChild) {
+            output.removeChild(output.firstChild);
+          }
+          for (const scaleX of [1, -1]) {
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(firstImage);
+            const style = `max-width: 30vw; transform: scaleX(${scaleX}); object-fit: cover;`;
+            img.style = style;
+            output.appendChild(img);
+          }
         }
       };
 
@@ -45,18 +58,26 @@
           onchange="updateImagePreview(getFirstImage())"
         />
         <div id="uploaded-image-preview"></div>
-        <input type="range" min="0" max="1" step="0.01" value="0.5" style="width: 30vw;" id="flip-point"/>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          value="50"
+          style="width: 30vw"
+          id="flip-point"
+        />
       </div>
       <button
         id="shrershify"
-        style="background-color: #b6b52a;"
+        style="background-color: #b6b52a"
         onclick="shrershify(getFirstImage(), getFlipPoint())"
       >
         Shrershify
       </button>
       <div style="display: flex; flex-direction: column">
-        <label>Output</label>
-        <canvas id="output"></canvas>
+        <span>Output</span>
+        <div id="output"></div>
       </div>
     </div>
   </body>
