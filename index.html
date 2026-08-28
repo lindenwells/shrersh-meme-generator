@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html style="font-family: Arial, Helvetica, sans-serif">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,6 @@
     <script type="module" src="./script.js"></script>
     <script>
       const updateImagePreview = (firstImage) => {
-
         if (firstImage) {
           const preview = document.getElementById("uploaded-image-preview");
           while (preview.firstChild) {
@@ -15,7 +14,7 @@
           const img = document.createElement("img");
           img.src = URL.createObjectURL(firstImage);
           img.alt = img.title = img.name;
-          img.style = "max-width: 30vw;"
+          img.style = "max-width: 30vw;";
 
           preview.appendChild(img);
         }
@@ -45,11 +44,19 @@
           onchange="updateImagePreview(getFirstImage())"
         />
         <div id="uploaded-image-preview"></div>
-        <input type="range" min="0" max="1" step="0.01" value="0.5" style="width: 30vw;" id="flip-point"/>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.5"
+          style="width: 30vw"
+          id="flip-point"
+        />
       </div>
       <button
         id="shrershify"
-        style="background-color: #b6b52a;"
+        style="background-color: #b6b52a"
         onclick="shrershify(getFirstImage(), getFlipPoint())"
       >
         Shrershify
