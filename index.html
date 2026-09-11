@@ -3,34 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Shrersh</title>
-    <script type="module" src="./script.js"></script>
-    <script>
-      const updateImagePreview = (firstImage) => {
-        if (firstImage) {
-          const preview = document.getElementById("uploaded-image-preview");
-          while (preview.firstChild) {
-            preview.removeChild(preview.firstChild);
-          }
-          const img = document.createElement("img");
-          img.src = URL.createObjectURL(firstImage);
-          img.alt = img.title = img.name;
-          img.style = "max-width: 30vw;";
-
-          const flip = window.getFlip();
-          if (flip) {
-            img.className = "flip-x";
-          }
-
-          preview.appendChild(img);
-        }
-      };
-
-      window.addEventListener("load", () => {
-        updateImagePreview(window.getFirstImage());
-      });
-    </script>
-    <link rel="icon" type="image/png" href="./favicon.png" />
-    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="/src/main.ts"></script>
+    <link rel="icon" type="image/png" href="/public/favicon.png" />
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <div style="height: 100vh; width: 100vw; display: flex; gap: 1rem">
@@ -44,12 +19,7 @@
         "
       >
         <label for="image-upload">Upload image</label>
-        <input
-          id="image-upload"
-          type="file"
-          accept="image/*"
-          onchange="updateImagePreview(getFirstImage())"
-        />
+        <input id="image-upload" type="file" accept="image/*" />
         <div style="width: fit-content">
           <div id="uploaded-image-preview" style="width: fit-content"></div>
           <input
@@ -65,18 +35,10 @@
         <fieldset>
           <legend>Flip to include right side of image:</legend>
           <label for="flip">Flip image</label>
-          <input
-            id="flip"
-            type="checkbox"
-            onchange="updateImagePreview(getFirstImage())"
-          />
+          <input id="flip" type="checkbox" />
         </fieldset>
       </div>
-      <button
-        id="shrershify"
-        style="background-color: #b6b52a"
-        onclick="shrershify(getFirstImage(), getFlipPoint())"
-      >
+      <button id="shrershify" style="background-color: #b6b52a">
         Shrershify
       </button>
       <div style="display: flex; flex-direction: column">
