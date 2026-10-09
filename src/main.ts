@@ -35,6 +35,7 @@ const updateImagePreview = (firstImage: File | undefined) => {
   img.src = URL.createObjectURL(firstImage);
   img.alt = img.title = firstImage.name;
   img.style.maxWidth = "30vw";
+  img.style.maxHeight = "720px";
 
   if (getFlip()) {
     img.className = "flip-x";
