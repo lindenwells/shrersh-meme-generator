@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html style="font-family: Arial, Helvetica, sans-serif">
   <head>
     <meta charset="UTF-8" />
@@ -11,11 +11,10 @@
     <div style="display: flex; gap: 1rem">
       <div
         style="
-          flex-grow: 1;
           display: flex;
           gap: 0.5rem;
           flex-direction: column;
-          max-width: 30vw;
+          max-width: 360px;
         "
       >
         <label for="image-upload">Upload image</label>
@@ -26,7 +25,7 @@
           onchange="updateImagePreview(getFirstImage())"
         />
         <div style="width: fit-content">
-          <div id="uploaded-image-preview" style="width: fit-content"></div>
+          <div id="uploaded-image-preview"></div>
           <input
             type="range"
             min="0"
