@@ -5,3 +5,8 @@
 html {
   background-color: whitesmoke;
 }
+
+#output {
+  max-width: 720px;
+  max-height: 80vh;
+}

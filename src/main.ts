@@ -3,14 +3,14 @@ import { crop, fetchURL, writeCanvas } from "image-js";
 const imageUpload = document.getElementById("image-upload") as HTMLInputElement;
 const flipCheckbox = document.getElementById("flip") as HTMLInputElement;
 const flipPointSlider = document.getElementById(
-  "flip-point"
+  "flip-point",
 ) as HTMLInputElement;
 const shrershifyButton = document.getElementById(
-  "shrershify"
+  "shrershify",
 ) as HTMLButtonElement;
 const canvas = document.getElementById("output") as HTMLCanvasElement;
 const preview = document.getElementById(
-  "uploaded-image-preview"
+  "uploaded-image-preview",
 ) as HTMLDivElement;
 
 const getFlipPoint = () => parseFloat(flipPointSlider.value);
@@ -55,7 +55,6 @@ const writeFlippedImage = async (imageURL: string, flipPoint: number) => {
   const flipX = Math.round(image.width * flipPoint);
   canvas.setAttribute("width", `${flipX * 2}`);
   canvas.setAttribute("height", `${image.height}`);
-  canvas.setAttribute("style", "max-height: 80vh; width: 720px;");
 
   const croppedImage = crop(image, { width: flipX });
   writeCanvas(croppedImage, canvas, {
@@ -71,15 +70,15 @@ const shrershify = (firstImage: File | undefined, flipPoint: number) => {
 };
 
 imageUpload.addEventListener("change", () =>
-  updateImagePreview(getFirstImage())
+  updateImagePreview(getFirstImage()),
 );
 
 flipCheckbox.addEventListener("change", () =>
-  updateImagePreview(getFirstImage())
+  updateImagePreview(getFirstImage()),
 );
 
 shrershifyButton.addEventListener("click", () =>
-  shrershify(getFirstImage(), getFlipPoint())
+  shrershify(getFirstImage(), getFlipPoint()),
 );
 
 // Browsers can restore a file input's selection on reload, so render whatever is
