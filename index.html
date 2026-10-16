@@ -7,26 +7,35 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body>
-    <div style="height: 100vh; width: 100vw; display: flex; gap: 1rem">
-      <div
-        style="
-          flex-grow: 1;
-          display: flex;
-          gap: 0.5rem;
-          flex-direction: column;
-          max-width: 30vw;
-        "
-      >
-        <label for="image-upload">Upload image</label>
-        <input
-          id="image-upload"
-          type="file"
-          accept="image/png, image/jpeg"
-          onchange="updateImagePreview(getFirstImage())"
-        />
+  <body
+    style="
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: white;
+      border-radius: 4px;
+      padding: 8px;
+    "
+  >
+    <div class="flex gap-1-rem">
+      <div class="flex flex-col gap-1-rem" style="max-width: 360px">
+        <div class="flex">
+          <div class="flex flex-col gap-1-rem">
+            <label for="image-upload">Upload image</label>
+            <input
+              id="image-upload"
+              type="file"
+              accept="image/png, image/jpeg"
+              onchange="updateImagePreview(getFirstImage())"
+            />
+          </div>
+          <div class="flex gap-half" style="align-items: flex-end">
+            <label for="flip">Flip image</label>
+            <input id="flip" type="checkbox" />
+          </div>
+        </div>
         <div style="width: fit-content">
-          <div id="uploaded-image-preview" style="width: fit-content"></div>
+          <div id="uploaded-image-preview"></div>
           <input
             type="range"
             min="0"
@@ -37,15 +46,25 @@
             id="flip-point"
           />
         </div>
-        <fieldset>
-          <legend>Flip to include right side of image:</legend>
-          <label for="flip">Flip image</label>
-          <input id="flip" type="checkbox" />
-        </fieldset>
+
+        <button
+          id="shrershify"
+          style="
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 8px;
+            background-color: #b6b52a;
+            border-radius: 4px;
+            color: #3b271c;
+            padding: 4px;
+          "
+        >
+          <img src="/favicon.png" style="height: 32px" alt="" />Shrershify
+        </button>
       </div>
-      <button id="shrershify" style="background-color: #b6b52a">
-        Shrershify
-      </button>
+
       <div style="display: flex; flex-direction: column">
         <label>Output</label>
         <canvas id="output"></canvas>

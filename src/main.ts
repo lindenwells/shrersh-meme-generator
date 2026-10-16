@@ -34,7 +34,8 @@ const updateImagePreview = (firstImage: File | undefined) => {
   const img = document.createElement("img");
   img.src = URL.createObjectURL(firstImage);
   img.alt = img.title = firstImage.name;
-  img.style.maxWidth = "30vw";
+  img.style.maxWidth = "360px";
+  img.style.maxHeight = "720px";
 
   if (getFlip()) {
     img.className = "flip-x";
@@ -54,7 +55,6 @@ const writeFlippedImage = async (imageURL: string, flipPoint: number) => {
   const flipX = Math.round(image.width * flipPoint);
   canvas.setAttribute("width", `${flipX * 2}`);
   canvas.setAttribute("height", `${image.height}`);
-  canvas.setAttribute("style", "max-height: 80vh;");
 
   const croppedImage = crop(image, { width: flipX });
   writeCanvas(croppedImage, canvas, {

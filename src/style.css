@@ -1,3 +1,28 @@
 .flip-x {
   transform: scaleX(-1);
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.gap-1-rem {
+  gap: 1rem;
+}
+
+.gap-half {
+  gap: 0.5rem;
+}
+
+html {
+  background-color: whitesmoke;
+}
+
+#output {
+  max-width: 720px;
+  max-height: 80vh;
+}
