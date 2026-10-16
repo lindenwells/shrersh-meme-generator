@@ -26,3 +26,19 @@ html {
   max-width: 720px;
   max-height: 80vh;
 }
+
+#uploaded-image-preview {
+  position: relative;
+  width: fit-content;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: calc(var(--flip-point) * 100%);
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}

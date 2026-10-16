@@ -27,9 +27,7 @@ const clearCanvas = (canvas: HTMLCanvasElement) => {
 const updateImagePreview = (firstImage: File | undefined) => {
   if (!firstImage) return;
 
-  while (preview.firstChild) {
-    preview.removeChild(preview.firstChild);
-  }
+  preview.querySelector("img")?.remove();
 
   const img = document.createElement("img");
   img.src = URL.createObjectURL(firstImage);
@@ -41,8 +39,11 @@ const updateImagePreview = (firstImage: File | undefined) => {
     img.className = "flip-x";
   }
 
-  preview.appendChild(img);
+  preview.prepend(img);
 };
+
+const updateBlurOverlay = () =>
+  preview.style.setProperty("--flip-point", flipPointSlider.value);
 
 const writeFlippedImage = async (imageURL: string, flipPoint: number) => {
   let image = await fetchURL(imageURL);
@@ -77,6 +78,8 @@ flipCheckbox.addEventListener("change", () =>
   updateImagePreview(getFirstImage()),
 );
 
+flipPointSlider.addEventListener("input", updateBlurOverlay);
+
 shrershifyButton.addEventListener("click", () =>
   shrershify(getFirstImage(), getFlipPoint()),
 );
@@ -84,3 +87,4 @@ shrershifyButton.addEventListener("click", () =>
 // Browsers can restore a file input's selection on reload, so render whatever is
 // already there.
 updateImagePreview(getFirstImage());
+updateBlurOverlay();
