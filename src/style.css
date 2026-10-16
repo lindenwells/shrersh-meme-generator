@@ -1,3 +1,7 @@
 .flip-x {
   transform: scaleX(-1);
 }
+
+html {
+  background-color: whitesmoke;
+}
