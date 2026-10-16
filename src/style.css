@@ -29,6 +29,7 @@ html {
 
 #uploaded-image-preview {
   position: relative;
+  width: fit-content;
 }
 
 .blur-overlay {
